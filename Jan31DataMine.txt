@@ -1,0 +1,66 @@
+Open Notebook Jan 31 2016 Data Mining the Internet
+
+I woke up to over 120 messages in the Slack "help" channel we have set up for the class, all about this tutorial. I'm braced. I'm ready. I've got a whole pot of tea and I'm prepared to do a lot of command+F and Googling. #letsdothis
+
+oh. right. I have a mac. the wild and erratic struggle everyone else seems to be having has been sidestepped for me this time. yay? nah. spoke too soon. 
+
+import internetarchive
+search = internetarchive.search_items('collection:bplscas')
+print search.num_found 
+
+resulted in... nada. syntax error. importerror. all kinda errors. the good old fashioned "restart and try again" worked, which was great. I don't really know why that works. I guess its because the computer has a chance to get it's shit together and start with everything all set and ready rather than patched together? 
+
+Most of my issues were syntax errors on my part (sloppy frustrated typing) but then... running the for loop in python to print out the identifiers of the internetarchive letters resulted in a big ol nothing. and I have no idea why. no error message. no "sorry I can't do that Dave". nothing. why?
+
+well... lets just move on and see what happens when we run the script. 
+
+oh. my. actual. god. 
+
+I don't know why it isn't working. it's the code they wrote. what am i doing wrong? i've double checked everything. i'm being careful with inputs and I made sure there wasn't any extra (or missing) white space because I know python cares about that. 
+
+#!/usr/bin/python
+
+import os
+import pymarc
+
+path = '/path/to/dir/with/xmlfiles/'
+
+def get_place_of_pub(record):
+    try:
+        place_of_pub = record['260']['a']
+        print place_of_pub
+    except Exception as e:
+        print e
+
+for file in os.listdir(path):
+    if file.endswith('.xml'):
+        pymarc.map_xml(get_place_of_pub, path + file)
+
+saved as script1.py and ran by the command ```python script1.py``` while in the correct directory: Phoebes-MacBook-Air: datamine phoebemannell$
+
+Then I did a bit of editing, thinking I could finally make this damn pymarc thing work: 
+
+#!/usr/bin/python
+
+import pymarc
+
+def get_place_of_pub(record):
+    place_of_pub = record['260']['a']
+    print place_of_pub
+
+pymarc.map_xml(get_place_of_pub, 'lettertomydearga00john_33_marc.xml')
+
+Big ol' case of the nopes. And I still don't know why. I am following the instructions exactly. what am I doing wrong?
+
+Lets google some shit. 
+
+Solution the easiest: `pip install requests six` - nah, requirements already fulfilled. shit. now what?
+
+the next suggestion: The second is to go to /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python and  `$ rm six.py` `six.pyc`
+okay but I don't know what to do! 
+
+Try updating the 'six' library: 'pip install -U six'.
+
+nah.
+
+So this is a fairly unique problem. we tweeted proghist about it. we'll see what happens. 

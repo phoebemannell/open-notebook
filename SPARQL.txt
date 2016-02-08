@@ -1,0 +1,12 @@
+meeting with Shawn: 
+
+linked open data (LOD) connects databases to create a S.V.O (subject *verb* object) (verb is a predicate/RDF triple) ie: Alexandria is a place in Egypt at a LATLONG
+
+SPARQL describes the predicates specificially (only works with some databases that are built with LOD in mind) 
+*defines relationships between databases
+
+**tweet at the nice man who wrote the tutorial. 
+
+Palladio - made for historians to visualize. 
+
+Working through the tutorial: 
